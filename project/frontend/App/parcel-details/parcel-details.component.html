@@ -1,0 +1,82 @@
+<table class="parcel-table">
+    <thead>
+      <tr>
+        <th>Parcel ID</th>
+        <th>Action</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let parcel of parcels">
+        <td>{{ parcel.id }}</td>
+        <td>
+          <button class="view-details-button" (click)="openDetailsPopup(parcel)">View Details</button>
+          <button class="tracking-button" (click)="trackingStatusPopup(parcel)">Tracking Status</button>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+  
+  <!-- Parcel Details Popup -->
+  <div class="parcel-details-popup" *ngIf="showDetailsPopup">
+    <div class="parcel-details-container">
+      <div class="parcel-details-popup-container">
+        <h2 class="parcel-details-header">Parcel Details - ID: {{ selectedParcel?.id }}</h2>
+        <div class="parcel-details-card">
+            <div class="popup" *ngIf="showTrackingPopup">
+                <div class="popup-content">
+                  <h2>Tracking Status - Parcel ID: {{ selectedParcel?.id }}</h2>
+                  <!-- Add your tracking status content here -->
+                  <button class="close-button" (click)="closeTrackingPopup()">Close</button>
+                </div>
+              </div>
+          
+          <div class="parcel-detail">
+            <label class="parcel-label">Sender Address:</label>
+            <span class="parcel-value">{{ selectedParcel?.senderAddress }}</span>
+          </div>
+          <div class="parcel-detail">
+            <label class="parcel-label">Receiver Address:</label>
+            <span class="parcel-value">{{ selectedParcel?.receiverAddress }}</span>
+          </div>
+          <div class="parcel-detail">
+            <label class="parcel-label">Weight:</label>
+            <span class="parcel-value">{{ selectedParcel?.weight }}</span>
+          </div>
+          <!-- Add more parcel details here -->
+        </div>
+        <button class="close-button" (click)="closeDetailsPopup()">Close</button>
+      </div>
+    </div>
+  </div>
+  
+<!-- Parcel Details Popup -->
+<div class="popup" *ngIf="showTrackingPopup">
+    <div class="popup-content">
+      <h2>Tracking Status - Parcel ID: {{ selectedParcel?.id }}</h2>
+      <div class="tracking-details">
+        <div class="tracking-item">
+          <div class="tracking-status">Shipped</div>
+          <div class="tracking-date">June 10, 2023</div>
+          <div class="tracking-location">New York, USA</div>
+        </div>
+        <div class="tracking-item">
+          <div class="tracking-status">In Transit</div>
+          <div class="tracking-date">June 12, 2023</div>
+          <div class="tracking-location">Los Angeles, USA</div>
+        </div>
+        <div class="tracking-item">
+          <div class="tracking-status">Out for Delivery</div>
+          <div class="tracking-date">June 15, 2023</div>
+          <div class="tracking-location">San Francisco, USA</div>
+        </div>
+        <div class="tracking-item">
+          <div class="tracking-status">Delivered</div>
+          <div class="tracking-date">June 18, 2023</div>
+          <div class="tracking-location">Seattle, USA</div>
+        </div>
+      </div>
+      <button class="close-button" (click)="closeTrackingPopup()">Close</button>
+    </div>
+  </div>
